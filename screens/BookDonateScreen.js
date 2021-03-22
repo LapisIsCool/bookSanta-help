@@ -41,27 +41,33 @@ export default class BookDonateScreen extends React.Component {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item, index }) => {
-    console.log(item, index, item.bookName);
+    // console.log(item, index, item.bookName);
     return (
-      <ListItem
-        key={index}
-        title={item.bookName}
-        subtitle={item.reason}
-        titleStyle={{ color: "black", fontWeight: "bold" }}
-        rightElement={
-          <TouchableOpacity style={styles.button}>
-            <Text style={{ color: "white" }}>View</Text>
-          </TouchableOpacity>
-        }
-        bottomDivider
-      />
+      <ListItem key={index} bottomDivider>
+        <ListItem.Content>
+          <ListItem.Title>{item.bookName}</ListItem.Title>
+          <ListItem.Subtitle>{item.reason}</ListItem.Subtitle>
+        </ListItem.Content>
+        <TouchableOpacity style={styles.button}>
+          <Text
+            style={{ color: "#f4dda3" }}
+            onPress={() => {
+              this.props.navigation.navigate("ReceiverDetails", {
+                details: item,
+              });
+            }}
+          >
+            View
+          </Text>
+        </TouchableOpacity>
+      </ListItem>
     );
   };
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <AppHeader title="Donate Books" />
+        <AppHeader title="Donate Books" navigation={this.props.navigation} />
         <View style={{ flex: 1 }}>
           {this.state.requestedBooksList.length === 0 ? (
             <View style={styles.subContainer}>

@@ -2,10 +2,11 @@ import React from "react";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import BookDonateScreen from "../screens/BookDonateScreen";
 import BookRequestScreen from "../screens/BookRequestScreen";
+import { AppStackNavigator } from "./AppStackNavigator";
 
 export const AppTabNavigator = createBottomTabNavigator({
   DonateBooks: {
-    screen: BookDonateScreen,
+    screen: AppStackNavigator,
     navigationOptions: {
       tabBarLabel: "Donate",
       tabBarOptions: {
